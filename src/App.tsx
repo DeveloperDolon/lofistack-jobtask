@@ -1,4 +1,5 @@
 import CartProductItem from "./components/CartProductItem";
+import { cart_products } from "./constants/cart_products";
 
 function App() {
   return (
@@ -27,7 +28,19 @@ function App() {
           </thead>
 
           <tbody>
-           <CartProductItem />
+            {cart_products.map((item, index) => (
+              <CartProductItem
+                key={index}
+                image={item.image}
+                product_name={item.product_name}
+                short_text={item.short_text}
+                source={item.source}
+                sale_type={item.sale_type}
+                change_button={item.change_button}
+                add_another={item.add_another}
+                price={item.price}
+              />
+            ))}
           </tbody>
         </table>
       </div>

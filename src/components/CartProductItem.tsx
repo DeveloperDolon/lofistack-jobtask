@@ -36,22 +36,24 @@ const CartProductItem = ({
             alt="Product image"
           />
 
-          <div>
+          <div className="space-y-1">
             <p className="md:text-xs text-[10px] font-semibold">{sale_type}</p>
             <h2 className="md:text-xl text-lg font-semibold">{product_name}</h2>
 
-            <h2 className="md:text-xl text-lg font-semibold text-[#f78344]">
-              [{short_text}]
-            </h2>
+            {short_text && (
+              <h2 className="md:text-xl text-lg font-semibold text-[#f78344]">
+                [{short_text}]
+              </h2>
+            )}
 
             <p className="md:text-xs text-[10px]">{source}</p>
 
             {change_button && (
-              <button className="md:text-xs text-[10px]">Change</button>
+              <button className="md:text-xs text-[10px] text-[#ee9e73]">Change</button>
             )}
 
             {add_another && (
-              <button className="md:text-xs text-[10px] p-3 border-[#f78344] rounded">
+              <button className="md:text-xs text-[10px] md:px-2 px-1 py-1 border border-[#f78344] text-[#f78344] rounded">
                 {add_another}
               </button>
             )}
@@ -77,7 +79,7 @@ const CartProductItem = ({
           </button>
         </div>
       </td>
-      <td className="px-6 py-4">{price * quantity}</td>
+      <td className="px-6 py-4">{(price * quantity).toFixed(2)}</td>
     </tr>
   );
 };
