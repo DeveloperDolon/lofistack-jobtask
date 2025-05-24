@@ -9,6 +9,7 @@ export interface CartProductItem {
   change_button?: boolean;
   add_another?: string;
   price: number;
+  setCartTotal?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CartProductItem = ({
@@ -20,6 +21,7 @@ const CartProductItem = ({
   change_button,
   add_another,
   price,
+  setCartTotal
 }: CartProductItem) => {
   const [quantity, setQuantity] = useState(1);
 
@@ -64,7 +66,10 @@ const CartProductItem = ({
       <td className="px-6 py-4">
         <div className="flex items-center gap-2 border-2 border-black rounded-lg w-fit">
           <button
-            onClick={() => setQuantity(quantity - 1)}
+            onClick={() => {
+                if (setCartTotal) setCartTotal((prevTotal) => prevTotal - price);
+                setQuantity(quantity - 1);
+            }}
             disabled={quantity <= 1}
             className="border-r-2 border-black  px-3 rounded text-xl font-semibold"
           >
@@ -72,7 +77,12 @@ const CartProductItem = ({
           </button>
           <span className="px-3">{quantity}</span>
           <button
-            onClick={() => setQuantity(quantity + 1)}
+            onClick={() => {
+                if (setCartTotal) setCartTotal((prevTotal) => prevTotal + price);
+                if (quantity < 99) {
+                    setQuantity(quantity + 1);
+                }
+            }}
             className="border-l-2 border-black  px-3 rounded text-xl font-semibold"
           >
             +
