@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-interface CartProductItemProps {
+export interface CartProductItem {
   image: string;
   product_name: string;
   short_text?: string;
@@ -20,7 +20,7 @@ const CartProductItem = ({
   change_button,
   add_another,
   price,
-}: CartProductItemProps) => {
+}: CartProductItem) => {
   const [quantity, setQuantity] = useState(1);
 
   return (
